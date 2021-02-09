@@ -9,7 +9,7 @@ module.exports = router
 router.get("/", async (request,response)=>{
     try{
         let memeArr = []
-        const memes = await Meme.find({},(err,memeFind)=>{
+        const memes = await Meme.find({},null,{'sort':'-date','limit':100},(err,memeFind)=>{
             memeFind.forEach((memeSingle)=>{
                 memeArr.push({
                     "id": memeSingle._id,
@@ -113,6 +113,20 @@ router.delete('/:id', async (request,response)=>{
     try{
         await meme.remove()
         response.json({'message':'Deleted Meme'})
+    }catch(err){
+        response.status(500).json({message: err.message})
+    }
+})
+
+//endpoint to fetch date of a meme (for front-end)
+
+router.get('/date/:id',async (request,response)=>{
+    const meme = await Meme.findById(request.params.id)
+    if(meme == null){
+        return response.status(404).json({'message': "Can't find meme"})
+    }
+    try{
+        response.status(200).json({'date': meme.date})
     }catch(err){
         response.status(500).json({message: err.message})
     }

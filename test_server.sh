@@ -5,6 +5,7 @@
 
 # cd to the cloned repo directory
 
+cd pranavkutty13-me_buildout_xmeme/
 
 # Run the user’s installation steps which will install any necessary dependencies required for the server to run, with sudo permission
 

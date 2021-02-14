@@ -2,4 +2,4 @@
 cd ./meme-backend
 
 npm install
-npm run server.js
+node server.js

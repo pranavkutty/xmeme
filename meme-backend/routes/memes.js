@@ -103,8 +103,7 @@ router.patch("/:id", async (request,response)=>{
     }
 })
 
-//delete endpoint using id
-
+//endpoint to delete meme using meme id
 router.delete('/:id', async (request,response)=>{
     const meme = await Meme.findById(request.params.id)
     if(meme == null){
@@ -118,16 +117,24 @@ router.delete('/:id', async (request,response)=>{
     }
 })
 
-//endpoint to fetch date of a meme (for front-end)
-
-router.get('/date/:id',async (request,response)=>{
-    const meme = await Meme.findById(request.params.id)
-    if(meme == null){
-        return response.status(404).json({'message': "Can't find meme"})
-    }
+//endpoint to get additional data such as date
+router.get("/date/data", async (request,response)=>{
     try{
-        response.status(200).json({'date': meme.date})
-    }catch(err){
+        let memeArr = []
+        const memes = await Meme.find({},null,{'sort':'-date','limit':100},(err,memeFind)=>{
+            memeFind.forEach((memeSingle)=>{
+                memeArr.push({
+                    "id": memeSingle._id,
+                    "name": memeSingle.name,
+                    "url": memeSingle.url,
+                    "caption": memeSingle.caption,
+                    "date": new Date(memeSingle.date)
+                })
+            })
+        })
+
+        response.status(200).send(memeArr)
+    }catch (err){
         response.status(500).json({message: err.message})
     }
-})
+});

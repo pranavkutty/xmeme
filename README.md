@@ -45,8 +45,7 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 ## Cloning this repository
 
-    $ https://gitlab.crio.do/COHORT_ME_BUILDOUT_XMEME_ENROLL_1612436694845/pranavkutty13-me_buildout_xmeme.git
-    $ cd pranavkutty13-me_buildout_xmeme
+    $ https://github.com/pranavkutty/xmeme.git
 
 ## Configure app
 

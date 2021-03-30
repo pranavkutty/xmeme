@@ -21,6 +21,11 @@ function patchJson() {
     let newCaption = document.getElementById("update-caption").value;
     let data = {};
     if (newUrl != "") {
+        if (newUrl.match(/\.(jpeg|jpg|gif|png)$/) == null) {
+            alert("Invalid URl, the URL should end with jpeg or other img formats");
+            modal.style.display = "none";
+            return;
+        }
         data["url"] = newUrl;
     }
     if (newCaption != "") {
@@ -45,7 +50,7 @@ function patchJson() {
             alert("The memes already posted, Sorry :(");
         }
         else if (xhr.readyState === 4 && xhr.status === 204) {
-            alert("Memes Updated");
+            alert("Meme Updated");
             location.reload();
         }
         else {
@@ -151,17 +156,8 @@ document.getElementById("submit").addEventListener("click", () => {
     let name = document.getElementById("form-name").value;
     let caption = document.getElementById("form-caption").value;
     let url = document.getElementById("form-url").value;
-
-    if (name == "") {
-        alert("Name cannot be empty");
-        return;
-    }
-    if (caption == "") {
-        alert("Caption cannot be empty");
-        return;
-    }
-    if (url == "") {
-        alert("URL cannot be empty");
+    if (url.match(/\.(jpeg|jpg|gif|png)$/) == null) {
+        alert("Invalid URl, the URL should end with jpeg or other img formats");
         return;
     }
 

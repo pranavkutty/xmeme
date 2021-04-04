@@ -22,7 +22,7 @@ function patchJson() {
     let data = {};
     if (newUrl != "") {
         if (newUrl.match(/\.(jpeg|jpg|gif|png)$/) == null) {
-            alert("Invalid URl, the URL should end with jpeg or other img formats");
+            alert("Invalid URL, the URL should end with jpeg,jpg,png,gif");
             modal.style.display = "none";
             return;
         }
@@ -157,7 +157,7 @@ document.getElementById("submit").addEventListener("click", () => {
     let caption = document.getElementById("form-caption").value;
     let url = document.getElementById("form-url").value;
     if (url.match(/\.(jpeg|jpg|gif|png)$/) == null) {
-        alert("Invalid URl, the URL should end with jpeg or other img formats");
+        alert("Invalid URL, the URL should end with jpeg,jpg,png,gif");
         return;
     }
 
